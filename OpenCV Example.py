@@ -22,8 +22,8 @@ while rval:
     #frame = cv2.GaussianBlur(frame,(5,5),0)
 
     # define range of blue color in HSV
-    lower_blue = np.array([40,40,40])
-    upper_blue = np.array([100,255,255])
+    lower_blue = np.array([15,80,80])
+    upper_blue = np.array([80,200,200])
 
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
@@ -40,7 +40,9 @@ while rval:
     ret,thresh = cv2.threshold(edges,127,255,0)
     contours,hierarchy = cv2.findContours(thresh, 1, 2)
     if (len(contours)>0):
-        cnt = contours[0]
+        areas = [cv2.contourArea(c) for c in contours]
+        max_index = np.argmax(areas)
+        cnt=contours[max_index]
         rect = cv2.minAreaRect(cnt)
         box = cv2.cv.BoxPoints(rect)
         box = np.int0(box)
@@ -57,7 +59,7 @@ while rval:
     #cv2.drawContours(gray, contours, -1, (100,100,100), 3)
 
     cv2.imshow('frame',frame)
-    cv2.imshow('gray',gray)
+    cv2.imshow('gray',edges)
 
     key = cv2.waitKey(20)
     if key == 27: # exit on ESC
