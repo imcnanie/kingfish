@@ -18,15 +18,23 @@ img = np.zeros((300,512,3), np.uint8)
 cv2.namedWindow('image')
 
 # create trackbars for color change
-cv2.createTrackbar('H0','image',0,255,nothing)
-cv2.createTrackbar('S0','image',0,255,nothing)
-cv2.createTrackbar('V0','image',0,255,nothing)
-cv2.createTrackbar('H1','image',0,255,nothing)
-cv2.createTrackbar('S1','image',0,255,nothing)
-cv2.createTrackbar('V1','image',0,255,nothing)
+cv2.createTrackbar('H0','image',0,180,nothing)
+cv2.createTrackbar('S0','image',0,180,nothing)
+cv2.createTrackbar('V0','image',0,180,nothing)
+cv2.createTrackbar('H1','image',0,180,nothing)
+cv2.createTrackbar('S1','image',0,180,nothing)
+cv2.createTrackbar('V1','image',0,180,nothing)
 # create switch for ON/OFF functionality
 switch = '0 : OFF \n1 : ON'
 cv2.createTrackbar(switch, 'image',0,1,nothing)
+
+cv2.setTrackbarPos('H0','image',30)
+cv2.setTrackbarPos('S0','image',20)
+cv2.setTrackbarPos('V0','image',30)
+cv2.setTrackbarPos('H1','image',100)
+cv2.setTrackbarPos('S1','image',120)
+cv2.setTrackbarPos('V1','image',60)
+
 
 while rval:
     
