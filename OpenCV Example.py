@@ -9,7 +9,37 @@ if vc.isOpened(): # try to get the first frame
 else:
     rval = False
 
+
+def nothing(x):
+    pass
+
+# Create a black image, a window
+img = np.zeros((300,512,3), np.uint8)
+cv2.namedWindow('image')
+
+# create trackbars for color change
+cv2.createTrackbar('H0','image',0,255,nothing)
+cv2.createTrackbar('S0','image',0,255,nothing)
+cv2.createTrackbar('V0','image',0,255,nothing)
+cv2.createTrackbar('H1','image',0,255,nothing)
+cv2.createTrackbar('S1','image',0,255,nothing)
+cv2.createTrackbar('V1','image',0,255,nothing)
+# create switch for ON/OFF functionality
+switch = '0 : OFF \n1 : ON'
+cv2.createTrackbar(switch, 'image',0,1,nothing)
+
 while rval:
+    
+    cv2.imshow('image',img)
+
+    # get current positions of four trackbars
+    h0 = cv2.getTrackbarPos('H0','image')
+    s0 = cv2.getTrackbarPos('S0','image')
+    v0 = cv2.getTrackbarPos('V0','image')
+    h1 = cv2.getTrackbarPos('H1','image')
+    s1 = cv2.getTrackbarPos('S1','image')
+    v1 = cv2.getTrackbarPos('V1','image')
+    s = cv2.getTrackbarPos(switch,'image')
 
     #print res.dtype
 
@@ -21,9 +51,13 @@ while rval:
     #hsv = cv2.dilate(hsv,None)
     #frame = cv2.GaussianBlur(frame,(5,5),0)
 
+    # # define range of blue color in HSV
+    # lower_blue = np.array([50,80,80])
+    # upper_blue = np.array([100,200,200])
+
     # define range of blue color in HSV
-    lower_blue = np.array([15,80,80])
-    upper_blue = np.array([80,200,200])
+    lower_blue = np.array([h0,s0,v0])
+    upper_blue = np.array([h1,s1,v1])
 
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
@@ -33,7 +67,7 @@ while rval:
 
     #convert to gray
     gray = cv2.cvtColor(res,cv2.COLOR_BGR2GRAY)
-    gray=cv2.medianBlur(gray,5)
+    gray = cv2.medianBlur(gray,5)
     
     # Finding Shapes
     edges = cv2.Canny(gray,50,150,apertureSize = 3)
