@@ -36,6 +36,10 @@ class KingfishApp(object):
             key = cv2.waitKey(20)
             if key == 27: # exit on ESC
                 cv2.destroyWindow("frame")
+                cv2.destroyWindow("yellow_image")
+                cv2.destroyWindow("red_image")
+                cv2.destroyWindow("blue_image")
+                self.vc.release
                 ## cv2.destroyWindow("gray")
                 ## cv2.destroyWindow("image")
                 break
@@ -74,7 +78,7 @@ class KingfishApp(object):
             #print(cv2.contourArea(box))
             a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
             b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
-            cv2.circle(self.frame,(a,b), 5, (0,0,255), -1)
+            cv2.circle(self.red_gray,(a,b), 5, (0,0,255), -1)
 
 
         self.red_gray = red_gray
