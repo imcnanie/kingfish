@@ -24,7 +24,7 @@ class KingfishApp(object):
         self.red_vals = self.show_trackbars("red")
         self.blu_vals = self.show_trackbars("blue")
         self.yel_vals = self.show_trackbars("yellow")
-
+        
         while True:
             self.create_stream()
             self.update_trackbars()
@@ -136,17 +136,17 @@ class KingfishApp(object):
         blue_gray = cv2.resize(self.blue_gray, (0,0), fx=0.5, fy=0.5)
         yellow_gray = cv2.resize(self.yellow_gray, (0,0), fx=0.5, fy=0.5)
         cv2.imshow('frame',frame)
-        cv2.imshow('red_grayscale',red_gray)
-        cv2.imshow('blue_grayscale',blue_gray)
-        cv2.imshow('yellow_grayscale',yellow_gray)
-        cv2.resizeWindow('frame',250,250)
-        cv2.resizeWindow('red_grayscale', 250,250)
-        cv2.resizeWindow('blue_grayscale', 250,250)
-        cv2.resizeWindow('yellow_grayscale', 250,250)
-        cv2.moveWindow('frame', 1040, 50)
-        cv2.moveWindow('red_grayscale', 10, 50)
-        cv2.moveWindow('blue_grayscale', 340, 50)
-        cv2.moveWindow('yellow_grayscale', 680,50)
+        ## cv2.imshow('red_grayscale',red_gray)
+        ## cv2.imshow('blue_grayscale',blue_gray)
+        ## cv2.imshow('yellow_grayscale',yellow_gray)
+        ## cv2.resizeWindow('frame',250,250)
+        ## cv2.resizeWindow('red_grayscale', 250,250)
+        ## cv2.resizeWindow('blue_grayscale', 250,250)
+        ## cv2.resizeWindow('yellow_grayscale', 250,250)
+        ## cv2.moveWindow('frame', 1040, 50)
+        ## cv2.moveWindow('red_grayscale', 10, 50)
+        ## cv2.moveWindow('blue_grayscale', 340, 50)
+        ## cv2.moveWindow('yellow_grayscale', 680,50)
 
     def update_trackbars(self):
         self.hr0 = cv2.getTrackbarPos('HR0','red_image')
