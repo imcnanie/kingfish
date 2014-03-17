@@ -70,6 +70,12 @@ class KingfishApp(object):
             box = cv2.cv.BoxPoints(rect)
             box = np.int0(box)
             cv2.drawContours(self.frame,[box],0,(0,0,255),2)
+            # AREA OF RECTANGLE + CENTER
+            #print(cv2.contourArea(box))
+            a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
+            b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
+            cv2.circle(self.frame,(a,b), 5, (0,0,255), -1)
+
 
         self.red_gray = red_gray
 
