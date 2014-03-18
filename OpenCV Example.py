@@ -33,10 +33,9 @@ cv2.setTrackbarPos('V0','image',30)
 cv2.setTrackbarPos('H1','image',100)
 cv2.setTrackbarPos('S1','image',120)
 cv2.setTrackbarPos('V1','image',60)
+cv2.imshow('image',img)
 
 while rval:
-
-    cv2.imshow('image',img)
 
     # get current positions of four trackbars
     h0 = cv2.getTrackbarPos('H0','image')
@@ -59,13 +58,11 @@ while rval:
     #frame = cv2.GaussianBlur(frame,(5,5),0)
     #hsv=cv2.bitwise_not(hsv,None)
 
-    # # define range of blue color in HSV
-    # lower_blue = np.array([50,80,80]) 
-    # upper_blue = np.array([100,200,200])
-
     # define range of blue color in HSV #red
     lower_blue = np.array([h0,s0,v0]) #72,96,141
     upper_blue = np.array([h1,s1,v1]) #102,255,255
+    lower_blue = np.array([0,0,0]) 
+    upper_blue = np.array([180,255,255])
 
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
@@ -79,7 +76,7 @@ while rval:
     
     # Finding Shapes
     edges = cv2.Canny(gray,50,150,apertureSize = 3)
-    ret,thresh = cv2.threshold(edges,127,255,0)
+    '''ret,thresh = cv2.threshold(edges,127,255,0)
     contours,hierarchy = cv2.findContours(thresh, 1, 2)
     if (len(contours)>0):
         areas = [cv2.contourArea(c) for c in contours]
@@ -89,9 +86,20 @@ while rval:
         box = cv2.cv.BoxPoints(rect)
         box = np.int0(box)
         cv2.drawContours(frame,[box],0,(0,0,255),2)
+        #print(cv2.contourArea(box))
+        a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
+        b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
+        cv2.circle(frame,(a,b), 5, (0,0,255), -1)'''
+    circles = cv2.HoughCircles(edges,cv2.cv.CV_HOUGH_GRADIENT,1,20,param1=50,param2=30,minRadius=0,maxRadius=0)
+    circles = np.uint16(np.around(circles))
+    for i in circles[0,:]:
+        # draw the outer circle
+        cv2.circle(frame,(i[0],i[1]),i[2],(0,255,0),2)
+        # draw the center of the circle
+        cv2.circle(frame,(i[0],i[1]),2,(0,0,255),3)
 
     cv2.imshow('frame',frame)
-    cv2.imshow('gray',gray)
+    cv2.imshow('gray',edges)
 
     key = cv2.waitKey(20)
     if key == 27: # exit on ESC
