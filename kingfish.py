@@ -12,6 +12,9 @@ TRACKBAR_BLU = [54,88,145,
 TRACKBAR_YEL = [80,90,100,
                 110,120,130]
 
+mode=0
+visibleYellow=0
+
 class KingfishApp(object):
     def __init__(self):
         self.mode = 0
@@ -80,6 +83,16 @@ class KingfishApp(object):
             a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
             b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
             cv2.circle(self.gray,(a,b), 5, (0,0,255), -1)
+
+            '''
+            if (a<200 and cv2.contourArea(box)>10000 and visibleYellow==0):
+                mode+=1
+                visibleYellow=1  
+            if (cv2.contourArea(box)<3000 and visibleYellow==1):
+                visibleYellow=0
+        if (len(contours)<0):
+            visibleYellow=0
+        print(str(mode)+" "+str(visibleYellow))'''
 
     def cv_show_frames(self):
         frame = cv2.resize(self.frame, (0,0), fx=0.5, fy=0.5)
