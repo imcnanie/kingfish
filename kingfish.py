@@ -12,12 +12,18 @@ TRACKBAR_BLU = [54,88,145,
 TRACKBAR_YEL = [80,90,100,
                 110,120,130]
 
-mode=0
-visibleYellow=0
 
 class KingfishApp(object):
     def __init__(self):
+        self.h0 = TRACKBAR_RED[0]
+        self.s0 = TRACKBAR_RED[1]
+        self.v0 = TRACKBAR_RED[2]
+        self.h1 = TRACKBAR_RED[3]
+        self.s1 = TRACKBAR_RED[4]
+        self.v1 = TRACKBAR_RED[5]
+
         self.mode = 0
+        self.visibleYellow = 0
 
         self.cv_init()
         self.cv_show_trackbars()
@@ -25,6 +31,7 @@ class KingfishApp(object):
         while True:
             self.cv_create_stream()
             self.cv_update_trackbars()
+            
             self.cv_track(invert=True)
             self.cv_show_frames()
 
@@ -59,6 +66,8 @@ class KingfishApp(object):
         # define range of blue color in HSV #red
         lower = np.array([self.h0,self.s0,self.v0])
         upper = np.array([self.h1,self.s1,self.v1])
+        ## lower = np.array([TRACKBAR_RED[0],TRACKBAR_RED[1],TRACKBAR_RED[2]])
+        ## upper = np.array([TRACKBAR_RED[3],TRACKBAR_RED[4],TRACKBAR_RED[5]])
         # Threshold the HSV image to get only red colors
         mask = cv2.inRange(hsv, lower, upper)
         # Bitwise-AND mask and original image
@@ -83,16 +92,15 @@ class KingfishApp(object):
             a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
             b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
             cv2.circle(self.gray,(a,b), 5, (0,0,255), -1)
-
-            '''
-            if (a<200 and cv2.contourArea(box)>10000 and visibleYellow==0):
-                mode+=1
-                visibleYellow=1  
-            if (cv2.contourArea(box)<3000 and visibleYellow==1):
-                visibleYellow=0
-        if (len(contours)<0):
-            visibleYellow=0
-        print(str(mode)+" "+str(visibleYellow))'''
+            
+            if (a<self.vc.get(3)/2 and cv2.contourArea(box)>10000 and self.visibleYellow==0):
+                self.mode+=1
+                self.visibleYellow=1  
+            if (cv2.contourArea(box)<3000 and self.visibleYellow==1):
+                self.visibleYellow=0
+        if (len(contours)<=0):
+            self.visibleYellow=0
+        print(str(self.mode)+" "+str(self.visibleYellow))
 
     def cv_show_frames(self):
         frame = cv2.resize(self.frame, (0,0), fx=0.5, fy=0.5)
