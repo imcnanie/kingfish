@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Home </title>
+		<style type="text/css">
+			body{
+				background-image:url("http://testingcentipede.comoj.com/topfade.png");
+				background-color:white;
+				background-repeat:repeat-x;
+				overflow-x:hidden;
+			}
+			a{
+				text-decoration: none;
+				color:white;
+			}
+		</style>
+	</head>
+	<body onload="checkHeight();" onScroll="checkHeight();">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
+		
+		<!--///////////////////////////////////////////////////////////////////////////////////////////////// side bars and bottom of page -->
+		<div style="position:absolute; top:107pt; margin-left:50%; left:-330pt; width:100%; height:1000pt; background-image: url('http://testingcentipede.comoj.com/side_left.png'); background-repeat: repeat-y">
+		</div>
+		<div style="position:absolute; top:107pt; margin-left:50%; left:320pt; width:100%; height:1000pt; background-image: url('http://testingcentipede.comoj.com/side_right.png'); background-repeat: repeat-y">
+		</div>
+		<div style="position:absolute; top:1100pt; left:0pt">
+			<img src="http://testingcentipede.comoj.com/bottomfade.png" alt="bar" />
+		</div>
+		
+		<div style="position:absolute; top:180pt; margin-left:50%; left:-220pt; font-size:56px">
+			Lorem Ispum
+		</div>
+		<div style="position:absolute; top:600pt; margin-left:50%; left:-220pt; line-height:80%;"> <!--////////////////////////Blog Posts-->
+			<b> April 5, 2014 </b> &nbsp;&nbsp;&nbsp;&nbsp; by Alex Elson <br></br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have a website! I've been working with HTML, along with Javascript, to <br></br>
+			create a custom looking design. More pages should be added over time, and as we <br></br>
+			take up new projects. We still need a members and sponsors page, though it shouldn't <br></br>
+			be too long before then. At the same time, Ian McNannie is continuing to work on the <br></br>
+			mechanical side of our latest project, which we chose to call "Kingfish". In a few months <br></br>
+			time we hope to be able to travel to Colorado and perform in the 2014 Autonomous Vehicle <br></br>
+			Competition, hosted by Sparkfun. I've already written the code to control object tracking  <br></br>
+			in OpenCV, so it shouldn't be too long before we'll ready to present it at the next Robotronica, <br></br>
+			AIME's local robotics showcase at Chico State University.
+		</div>
+		<div style="position:absolute; top:820pt; margin-left:50%; left:-270pt">
+			<img src="http://testingcentipede.comoj.com/line.png" alt="bar" />
+		</div>
+		
+		<script type="text/javascript"> //////////////////////////////////////////////Create Slideshow
+			var NumberOfImages = 2
+			var img = new Array(NumberOfImages)
+			var imgNumber = Math.floor( Math.random()*3 )
+			var rightmove = 0
+			var leftmove = 0
+			var clickedarrow = 0
+			img[0] = "http://testingcentipede.comoj.com/image1.png"
+			img[1] = "http://testingcentipede.comoj.com/image2.png"
+			img[2] = "http://testingcentipede.comoj.com/image3.png"
+			function StartUp(){
+				document.images["slidefade"].src = img[imgNumber]
+			}
+			function NextImage(){
+				imgNumber++
+				if (imgNumber == NumberOfImages+1){
+					imgNumber = 0
+				}
+				$('#imag').fadeOut( function() {
+					document.images["slidefade"].src = img[imgNumber]
+					$('#imag').fadeIn();
+				});
+				rightmove = 20
+				RightArrowMove()
+			}
+			function PreviousImage(){
+				imgNumber=imgNumber-1
+				if (imgNumber ==-1){
+					imgNumber = NumberOfImages
+				}
+				$('#imag').fadeOut( function() {
+					document.images["slidefade"].src = img[imgNumber]
+					$('#imag').fadeIn();
+				});
+				leftmove = 20
+				LeftArrowMove()
+			}
+			function RightArrowMove(){
+				document.getElementById("right").style.left=250+rightmove+"pt"
+				rightmove=rightmove-3
+				if (rightmove>0){
+					setTimeout("RightArrowMove()",20)
+				}
+			}
+			function LeftArrowMove(){
+				document.getElementById("left").style.left=-280+-leftmove+"pt"
+				leftmove=leftmove-3
+				if (leftmove>0){
+					setTimeout("LeftArrowMove()",20)
+				}
+			}
+			setTimeout("StartUp()",0)
+		</script>
+		<div style="position:absolute; top:280pt; left:50%; margin-left:-300px">
+			<img src="http://testingcentipede.comoj.com/image1.png" name="slidefade" alt="logo" id="imag"/>
+		</div>
+		<div style="position:absolute; top:400pt; margin-left:50%; left:-280pt" id="left"> <!--Arrow Buttons-->
+			<a href="javascript:PreviousImage()">
+				<img src="http://testingcentipede.comoj.com/arrowleft.png" alt="logo"/>
+			</a>
+		</div>
+		<div style="position:absolute; top:400pt; margin-left:50%; left:250pt" id="right">
+			<a href="javascript:NextImage()">
+				<img src="http://testingcentipede.comoj.com/arrowright.png" alt="logo"/>
+			</a>
+		</div>
+		
+		<script type="text/javascript"> //////////////////////////////////Moving Buttons
+			function checkHeight() {
+				var currentScrollPos = window.pageYOffset;
+				
+				if (currentScrollPos<=105){
+					document.getElementById("HomeButton").style.top=85+"pt"
+					document.getElementById("HomeButton").style.position="absolute"
+					document.getElementById("P1Button").style.top=85+"pt"
+					document.getElementById("P1Button").style.position="absolute"
+					document.getElementById("HomeBar").style.top=78+"pt"
+					document.getElementById("HomeBar").style.position="absolute"
+				}
+				if (currentScrollPos>105){
+					document.getElementById("HomeButton").style.top=6+"pt"
+					document.getElementById("HomeButton").style.position="fixed"
+					document.getElementById("P1Button").style.top=6+"pt"
+					document.getElementById("P1Button").style.position="fixed"
+					document.getElementById("HomeBar").style.top=0+"pt"
+					document.getElementById("HomeBar").style.position="fixed"
+				}
+				//document.getElementById('HomeButton').innerHTML = currentScrollPos;
+			}
+		</script>	
+		<div id="HomeBar" style="position:fixed; left:0pt; top:100pt">
+			<img src="http://testingcentipede.comoj.com/bar.png" alt="bar" /> 
+		</div>
+		
+		<div style="position:absolute; top:9px; left:1px;">
+			<img src="http://testingcentipede.comoj.com/logoback.png" alt="logo" /> 
+		</div>
+		<div style="position:absolute; top:10px; left:1px">
+			<img src="http://testingcentipede.comoj.com/logo.png" alt="logo" /> 
+		</div>
+
+		
+		<div style="position:absolute; top:25pt; margin-left:190pt; font-size:56px">
+			<a>
+				Home
+			</a>
+		</div>
+		<div id="HomeButton" style="position:fixed; left:200pt; top:100pt">
+			<font size="4">
+				<a href="index.html"> Home </a>
+			</font>
+		</div>
+		<div id="P1Button" style="position:fixed; left:280pt; top:100pt">
+			<font size="4">
+				<a href="kingfish.html"> Project Kingfish </a>
+			</font>
+		</div>
+		
+	</body>
+	
+</html> 
