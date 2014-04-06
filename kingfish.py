@@ -4,6 +4,11 @@
 
 import cv2
 import numpy as np
+import serial
+
+SER = serial.Serial("/dev/ttyUSB0",9600)
+SER.close()
+SER.open() 
 
 TRACKBAR_RED = [72,148,100,
                 102,255,255]
@@ -11,7 +16,6 @@ TRACKBAR_BLU = [54,88,145,
                 102,255,255]
 TRACKBAR_YEL = [80,90,100,
                 110,120,130]
-
 
 class KingfishApp(object):
     def __init__(self):
@@ -35,6 +39,9 @@ class KingfishApp(object):
             self.cv_track(invert=True)
             self.cv_show_frames()
 
+            self.rob_turn(self.v1) #from 3-250
+            self.rob_speed(self.s1) #from 3-250
+
             key = cv2.waitKey(20)
             if key == 27: # exit on ESC
                 cv2.destroyWindow("frame")
@@ -42,6 +49,15 @@ class KingfishApp(object):
                 self.vc.release
                 break
 
+    def rob_turn(self,angle):
+        SER.write(chr(2))
+        SER.write(chr(angle))
+
+    def rob_speed(self,speed):
+        SER.write(chr(1))
+        SER.write(chr(speed))
+
+    
     def cv_init(self):
         self.vc = cv2.VideoCapture(0)
         
@@ -51,9 +67,9 @@ class KingfishApp(object):
             rval = False
 
         img = np.zeros((300,512,3), np.uint8)
-
     def cv_create_stream(self):
         _, self.frame = self.vc.read()
+
 
     def cv_track(self,invert=False):
         if invert:
