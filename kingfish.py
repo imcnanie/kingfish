@@ -17,14 +17,32 @@ TRACKBAR_BLU = [54,88,145,
 TRACKBAR_YEL = [80,90,100,
                 110,120,130]
 
+#Check if file exists
+checkfile=0
+try:
+    with open('hue.txt'): checkfile=1
+except IOError:
+    checkfile=0
+
+
 class KingfishApp(object):
     def __init__(self):
-        self.h0 = TRACKBAR_RED[0]
-        self.s0 = TRACKBAR_RED[1]
-        self.v0 = TRACKBAR_RED[2]
-        self.h1 = TRACKBAR_RED[3]
-        self.s1 = TRACKBAR_RED[4]
-        self.v1 = TRACKBAR_RED[5]
+        if (checkfile==0):
+            self.h0 = TRACKBAR_RED[0]
+            self.s0 = TRACKBAR_RED[1]
+            self.v0 = TRACKBAR_RED[2]
+            self.h1 = TRACKBAR_RED[3]
+            self.s1 = TRACKBAR_RED[4]
+            self.v1 = TRACKBAR_RED[5]
+        if (checkfile==1):
+            load=open("hue.txt","r")
+            TRACKBAR_RED[0]=int(load.readline())
+            TRACKBAR_RED[1]=int(load.readline())
+            TRACKBAR_RED[2]=int(load.readline())
+            TRACKBAR_RED[3]=int(load.readline())
+            TRACKBAR_RED[4]=int(load.readline())
+            TRACKBAR_RED[5]=int(load.readline())
+            load.close()            
 
         self.mode = 0
         self.visibleYellow = 0
@@ -45,8 +63,17 @@ class KingfishApp(object):
             key = cv2.waitKey(20)
             if key == 27: # exit on ESC
                 cv2.destroyWindow("frame")
+                cv2.destroyWindow("grayscale")
                 cv2.destroyWindow("track_image")
-                self.vc.release
+                save = open("hue.txt", "w") #Save File
+                save.write(str(self.h0)+"\n")
+                save.write(str(self.s0)+"\n")
+                save.write(str(self.v0)+"\n")
+                save.write(str(self.h1)+"\n")
+                save.write(str(self.s1)+"\n")
+                save.write(str(self.v1)+"\n")
+                save.close()
+                self.vc.release()
                 break
 
     def rob_turn(self,angle):
@@ -116,7 +143,7 @@ class KingfishApp(object):
                 self.visibleYellow=0
         if (len(contours)<=0):
             self.visibleYellow=0
-        print(str(self.mode)+" "+str(self.visibleYellow))
+        #print(str(self.mode)+" "+str(self.visibleYellow))
 
     def cv_show_frames(self):
         frame = cv2.resize(self.frame, (0,0), fx=0.5, fy=0.5)
