@@ -20,18 +20,37 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
 		
 		<!--///////////////////////////////////////////////////////////////////////////////////////////////// side bars and bottom of page -->
-		<div style="position:absolute; top:107pt; margin-left:50%; left:-330pt; width:100%; height:1000pt; background-image: url('http://testingcentipede.comoj.com/side_left.png'); background-repeat: repeat-y">
+		<div style="position:absolute; top:107pt; margin-left:50%; left:-330pt; width:100%; height:1200pt; background-image: url('http://testingcentipede.comoj.com/side_left.png'); background-repeat: repeat-y">
 		</div>
-		<div style="position:absolute; top:107pt; margin-left:50%; left:320pt; width:100%; height:1000pt; background-image: url('http://testingcentipede.comoj.com/side_right.png'); background-repeat: repeat-y">
+		<div style="position:absolute; top:107pt; margin-left:50%; left:320pt; width:100%; height:1200pt; background-image: url('http://testingcentipede.comoj.com/side_right.png'); background-repeat: repeat-y">
 		</div>
-		<div style="position:absolute; top:1100pt; left:0pt">
+		<div style="position:absolute; top:1300pt; left:0pt">
 			<img src="http://testingcentipede.comoj.com/bottomfade.png" alt="bar" />
 		</div>
+		<!-- /////////////////////////////////////////////Bottom Bar-->
+		<div style="position:absolute; top:1125pt; margin-left:50%; left:-130pt ">
+			<a> Pleasant Valley Mechatronics - 100% Student Run </a>
+		</div>
 		
-		<div style="position:absolute; top:180pt; margin-left:50%; left:-220pt; font-size:56px">
-			Lorem Ispum
+		<div style="position:absolute; top:180pt; margin-left:50%; left:-200pt; font-size:56px">
+			<FONT FACE="Verdana">
+				Our New Website!
+			</FONT>
 		</div>
 		<div style="position:absolute; top:600pt; margin-left:50%; left:-220pt; line-height:80%;"> <!--////////////////////////Blog Posts-->
+			<b> April 14, 2014 </b> &nbsp;&nbsp;&nbsp;&nbsp; by Alex Elson <br></br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The AIM showcase is approaching. One week from now, we  <br></br>
+			need the robot to be able to detect objects in the path and avoid them, similar to how the <br></br>
+			will play out. Hopefully we will be able to finish it before then. Hoop detection will<br></br>
+			be worked on afterwards, due to time restraints. Also, the "about" page will be expanded <br></br>
+			upon soon. <br></br>
+
+		</div>
+		<div style="position:absolute; top:740pt; margin-left:50%; left:-270pt">
+			<img src="http://testingcentipede.comoj.com/line.png" alt="bar" />
+		</div>
+		<div style="position:absolute; top:900pt; margin-left:50%; left:-220pt; line-height:80%;"> <!--////////////////////////Blog Posts-->
 			<b> April 5, 2014 </b> &nbsp;&nbsp;&nbsp;&nbsp; by Alex Elson <br></br>
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have a website! I've been working with HTML, along with Javascript, to <br></br>
@@ -44,7 +63,7 @@
 			in OpenCV, so it shouldn't be too long before we'll ready to present it at the next Robotronica, <br></br>
 			AIME's local robotics showcase at Chico State University.
 		</div>
-		<div style="position:absolute; top:820pt; margin-left:50%; left:-270pt">
+		<div style="position:absolute; top:1120pt; margin-left:50%; left:-270pt">
 			<img src="http://testingcentipede.comoj.com/line.png" alt="bar" />
 		</div>
 		
@@ -124,6 +143,8 @@
 					document.getElementById("HomeButton").style.position="absolute"
 					document.getElementById("P1Button").style.top=85+"pt"
 					document.getElementById("P1Button").style.position="absolute"
+					document.getElementById("AboutButton").style.top=85+"pt"
+					document.getElementById("AboutButton").style.position="absolute"
 					document.getElementById("HomeBar").style.top=78+"pt"
 					document.getElementById("HomeBar").style.position="absolute"
 				}
@@ -132,6 +153,8 @@
 					document.getElementById("HomeButton").style.position="fixed"
 					document.getElementById("P1Button").style.top=6+"pt"
 					document.getElementById("P1Button").style.position="fixed"
+					document.getElementById("AboutButton").style.top=6+"pt"
+					document.getElementById("AboutButton").style.position="fixed"
 					document.getElementById("HomeBar").style.top=0+"pt"
 					document.getElementById("HomeBar").style.position="fixed"
 				}
@@ -149,17 +172,23 @@
 			<img src="http://testingcentipede.comoj.com/logo.png" alt="logo" /> 
 		</div>
 
-		
-		<div style="position:absolute; top:25pt; margin-left:190pt; font-size:56px">
-			<a>
-				Home
-			</a>
+		<!-- //////////////////////////////////////////////////////////////////////////////Top Bar -->
+		<div style="position:absolute; top:30pt; margin-left:190pt; font-size:46px"> 
+			<a><FONT FACE=""><i><b>
+				Pleasant Valley Mechatronics
+			</i></b></FONT></a>
 		</div>
 		<div id="HomeButton" style="position:fixed; left:200pt; top:100pt">
 			<font size="4">
 				<a href="index.html"> Home </a>
 			</font>
 		</div>
+		<div id="AboutButton" style="position:fixed; right:50pt; top:100pt">
+			<font size="4">
+				<a href="about.html"> About </a>
+			</font>
+		</div>
+		
 		<div id="P1Button" style="position:fixed; left:280pt; top:100pt">
 			<font size="4">
 				<a href="kingfish.html"> Project Kingfish </a>

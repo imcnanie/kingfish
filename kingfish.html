@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Home </title>
+		<style type="text/css">
+			body{
+				background-image:url("http://testingcentipede.comoj.com/topfade.png");
+				background-color:white;
+				background-repeat:repeat-x;
+				overflow-x:hidden;
+			}
+			a{
+				text-decoration: none;
+				color:white;
+			}
+		</style>
+	</head>
+	<body onload="checkHeight();" onScroll="checkHeight();">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
+		
+		<!--///////////////////////////////////////////////////////////////////////////////////////////////// side bars and bottom of page -->
+		<div style="position:absolute; top:107pt; margin-left:50%; left:-330pt; width:100%; height:800pt; background-image: url('http://testingcentipede.comoj.com/side_left.png'); background-repeat: repeat-y">
+		</div>
+		<div style="position:absolute; top:107pt; margin-left:50%; left:320pt; width:100%; height:800pt; background-image: url('http://testingcentipede.comoj.com/side_right.png'); background-repeat: repeat-y">
+		</div>
+		<div style="position:absolute; top:900pt; left:0pt">
+			<img src="http://testingcentipede.comoj.com/bottomfade.png" alt="bar" />
+		</div>
+		<!-- /////////////////////////////////////////////Bottom Bar-->
+		<div style="position:absolute; top:925pt; margin-left:50%; left:-130pt ">
+			<a> Pleasant Valley Mechatronics - 100% Student Run </a>
+		</div>
+		
+		<script type="text/javascript"> //////////////////////////////////Moving Buttons
+			function checkHeight() {
+				var currentScrollPos = window.pageYOffset;
+				
+				if (currentScrollPos<=105){
+					document.getElementById("HomeButton").style.top=85+"pt"
+					document.getElementById("HomeButton").style.position="absolute"
+					document.getElementById("P1Button").style.top=85+"pt"
+					document.getElementById("P1Button").style.position="absolute"
+					document.getElementById("AboutButton").style.top=85+"pt"
+					document.getElementById("AboutButton").style.position="absolute"
+					document.getElementById("HomeBar").style.top=78+"pt"
+					document.getElementById("HomeBar").style.position="absolute"
+				}
+				if (currentScrollPos>105){
+					document.getElementById("HomeButton").style.top=6+"pt"
+					document.getElementById("HomeButton").style.position="fixed"
+					document.getElementById("P1Button").style.top=6+"pt"
+					document.getElementById("P1Button").style.position="fixed"
+					document.getElementById("AboutButton").style.top=6+"pt"
+					document.getElementById("AboutButton").style.position="fixed"
+					document.getElementById("HomeBar").style.top=0+"pt"
+					document.getElementById("HomeBar").style.position="fixed"
+				}
+				//document.getElementById('HomeButton').innerHTML = currentScrollPos;
+			}
+		</script>	
+		
+		<!-- ////////////////////////////////////////////////////////The Robot Image/Text-->
+		<div style="position:absolute; top:200pt; left:50%; margin-left:-300px">
+			<img src="http://testingcentipede.comoj.com/kingfishimg1.jpg"/>
+		</div>
+		<div style="position:absolute; top:500pt; left:50%; margin-left:-300px; line-height:80%;">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Kingfish" is our Autonomous Vehicle. We plan compete in the 2014 Autonomous  <br></br>
+			Vehicle Competition, hosted by SparkFun
+			in Colorado. Unfortunately, we are low on funding <br></br>
+			right now, so we are currently looking for sponsors.  <br></br> <br></br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The contest pits different vehicles against one another in a race for points and the <br></br>
+			best time. However, we will have no control over how our vehicle once the race starts; <br></br> 
+			object-tracking and engineering prowess will be put to the test. 
+			
+		</div>
+		
+		
+		<!-- //////////////////////////////////////////////////////////////////////////////Top Bar -->
+		<div id="HomeBar" style="position:fixed; left:0pt; top:100pt">
+			<img src="http://testingcentipede.comoj.com/bar.png" alt="bar" /> 
+		</div>
+		<div style="position:absolute; top:9px; left:1px;">
+			<img src="http://testingcentipede.comoj.com/logoback.png" alt="logo" /> 
+		</div>
+		<div style="position:absolute; top:10px; left:1px">
+			<img src="http://testingcentipede.comoj.com/logo.png" alt="logo" /> 
+		</div>
+		<div style="position:absolute; top:30pt; margin-left:190pt; font-size:46px"> 
+			<a><FONT FACE=""><i><b>
+				Kingfish
+			</i></b></FONT></a>
+		</div>
+		<div id="HomeButton" style="position:fixed; left:200pt; top:100pt">
+			<font size="4">
+				<a href="index.html"> Home </a>
+			</font>
+		</div>
+		<div id="AboutButton" style="position:fixed; right:50pt; top:100pt">
+			<font size="4">
+				<a href="about.html"> About </a>
+			</font>
+		</div>
+		
+		<div id="P1Button" style="position:fixed; left:280pt; top:100pt">
+			<font size="4">
+				<a href="kingfish.html"> Project Kingfish </a>
+			</font>
+		</div>
+		
+		
+	</body>
+	
+</html> 
