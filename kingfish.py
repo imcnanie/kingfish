@@ -5,10 +5,10 @@
 import cv2
 import numpy as np
 import serial
-
+'''
 SER = serial.Serial("/dev/ttyUSB0",9600)
 SER.close()
-SER.open() 
+SER.open()'''
 
 TRACKBAR_RED = [72,148,100,
                 102,255,255]
@@ -57,11 +57,12 @@ class KingfishApp(object):
             self.cv_track(invert=True)
             self.cv_show_frames()
 
-            self.rob_turn(self.v1) #from 3-250
-            self.rob_speed(self.s1) #from 3-250
+            #rob_turn(self.v1) #from 3-250
+            #self.rob_speed(self.s1) #from 3-250
 
             key = cv2.waitKey(20)
             if key == 27: # exit on ESC
+                self.vc.release()  
                 cv2.destroyWindow("frame")
                 cv2.destroyWindow("grayscale")
                 cv2.destroyWindow("track_image")
@@ -75,14 +76,14 @@ class KingfishApp(object):
                 save.close()
                 self.vc.release()
                 break
-
+    '''
     def rob_turn(self,angle):
         SER.write(chr(2))
         SER.write(chr(angle))
 
     def rob_speed(self,speed):
         SER.write(chr(1))
-        SER.write(chr(speed))
+        SER.write(chr(speed))'''
 
     
     def cv_init(self):
