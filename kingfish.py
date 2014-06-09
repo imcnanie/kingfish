@@ -17,6 +17,9 @@ TRACKBAR_BLU = [54,88,145,
 TRACKBAR_YEL = [80,90,100,
                 110,120,130]
 
+CRITICAL_DANGER_AREA = 100000
+CENTER_X = 320
+
 #Check if file exists
 checkfile=0
 try:
@@ -55,6 +58,14 @@ class KingfishApp(object):
             self.cv_update_trackbars()
             
             self.cv_track(invert=True)
+
+            #print self.danger_area
+
+            if self.present_danger():
+                self.avoid_danger()
+            else:
+                pass #self.gps
+
             self.cv_show_frames()
 
             #rob_turn(self.v1) #from 3-250
@@ -76,6 +87,22 @@ class KingfishApp(object):
                 save.close()
                 self.vc.release()
                 break
+
+    def avoid_danger(self):
+        if self.danger_x < CENTER_X:
+            print "turn right"
+        else:
+            print "turn left"
+        #print self.danger_x
+        
+    def present_danger(self):
+        if self.danger_area > CRITICAL_DANGER_AREA:
+            print "motors on"
+            return True
+        else:
+            print "motors off"
+            return False
+            
     '''
     def rob_turn(self,angle):
         SER.write(chr(2))
@@ -136,6 +163,9 @@ class KingfishApp(object):
             a=(box[0][0]+box[1][0]+box[2][0]+box[3][0])/4
             b=(box[0][1]+box[1][1]+box[2][1]+box[3][1])/4
             cv2.circle(self.gray,(a,b), 5, (0,0,255), -1)
+
+            self.danger_x = a; self.danger_y = b
+            self.danger_area = cv2.contourArea(box)
             
             if (a<self.vc.get(3)/2 and cv2.contourArea(box)>10000 and self.visibleYellow==0):
                 self.mode+=1
