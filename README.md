@@ -5,7 +5,7 @@ Kingfish is Pleasant Valley Robotics' first autonomous robot. It uses OpenCV to 
 Sparkfun AVC Photos
 ========
 ![alt tag](/images/10342011_682101435159136_1684355343940003715_n.jpg)
-Pictured Left to Right: Alex Elson (Programming), Ian McNanie (Electronics, Club President), Stas Baranovskiy (Mathematics) 
+Pictured Left to Right: Alex Elson (Programming), Ian McNanie (Electronics, Programming, Club President), Stas Baranovskiy (Mathematics) 
 
 ![alt tag](/images/10438958_682101495159130_8510601720478656168_n.jpg)
 Kingfish's battery died on the plane to the event, another competitor lent us a battery for last minute surgery 
